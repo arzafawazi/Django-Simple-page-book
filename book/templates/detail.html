@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow-lg rounded">
+            <!-- Gambar Buku -->
+            <img
+              src="{{ book.gambar.url }}"
+              alt="Gambar Buku"
+              class="card-img-top img-fluid rounded-top"
+              style="object-fit: cover; height: 300px;"
+            />
+
+            <div class="card-body">
+              <!-- Judul Buku dan Pengarang -->
+              <h5 class="card-title text-center fw-bold" title="{{ book.judul }}">
+                {{ book.judul }} | <small class="text-muted">{{ book.pengarang }}</small>
+              </h5>
+
+              <!-- Tanggal Rilis Buku -->
+              <p class="card-text text-center text-muted mb-3">
+                <small>Rilis: {{ book.tanggal_rilis|date:"d-m-Y" }}</small>
+              </p>
+
+              <!-- Sinopsis Buku -->
+              <p class="card-text mb-3">
+                <strong>Sinopsis:</strong>
+                <br />
+                <span title="{{ book.sinopsis }}">
+                  {{ book.sinopsis|slice:":250" }}...
+                </span>
+                <!-- Membatasi panjang sinopsis -->
+              </p>
+
+              <!-- Detail Buku: ISBN, Jumlah Halaman, Penerbit -->
+              <p class="card-text">
+                <strong>ISBN:</strong> {{ book.isbn }} |
+                <strong>Halaman:</strong> {{ book.jumlah_halaman }} |
+                <strong>Penerbit:</strong> {{ book.publisher.nama }}
+              </p>
+
+              <!-- Tombol Kembali -->
+              <a href="{% url 'home' %}" class="btn btn-outline-primary w-100">
+                Kembali ke Beranda
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+  
